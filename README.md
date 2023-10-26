@@ -6,6 +6,15 @@ This document provides information about the API endpoints and how to use them.
 
 Before using the API, you need to authenticate. Please provide your API key in the `Authorization` header of each request.
 
+- Header: Authorization
+- Value: 12345678
+
+  ```json
+  
+  Authorization: 12345678
+  
+You can either add this header to your collection or to the particular request you need  
+
 ## Endpoints
 
 ### GET /api/items
@@ -82,3 +91,9 @@ Retrieve a list of items.
 #### Response
 - Status: *204* No Content
 
+
+### Error-handling
+- 400 Bad Request - Syntax problems
+- 401 Unauthorized - Wrong auth key
+- 402 No auth token provided - No authorization token
+- 404 Not Found - Could not find resource 
