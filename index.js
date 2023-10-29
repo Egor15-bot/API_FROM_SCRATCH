@@ -76,7 +76,7 @@ app.post("/api/items", validateData, isAuthorized, (req, res) => {
 
 // PUT для обновления данных
 app.put("/api/items/:id", isAuthorized, (req, res) => {
-  const itemId = parseInt(req.params.id);
+  const itemId = req.params.id;
   const updatedItem = req.body;
   const itemToUpdate = items.find((item) => item.id === itemId);
 
