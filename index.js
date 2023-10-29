@@ -30,6 +30,7 @@ const isAuthorized = (req, res, next) => {
   next();
 };
 
+app.use(express.static(__dirname + '/public')); // Статический middleware для папки public
 
 // Поддержка парсинга JSON-данных
 app.use(bodyParser.json());
@@ -45,6 +46,7 @@ const methods = {
   OPTIONS: "Получить доступные методы",
   WEB_DOC: "https://github.com/Egor15-bot/API_FROM_SCRATCH/tree/master",
 };
+
 // GET для получения данных
 app.get("/api/items", isAuthorized, (req, res) => {
   res.json(items); // Отправляем массив элементов в ответ на GET-запрос
@@ -76,7 +78,7 @@ app.post("/api/items", validateData, isAuthorized, (req, res) => {
 
 // PUT для обновления данных
 app.put("/api/items/:id", isAuthorized, (req, res) => {
-  const itemId = req.params.id;
+  const itemId = parseInt(req.params.id);
   const updatedItem = req.body;
   const itemToUpdate = items.find((item) => item.id === itemId);
 
